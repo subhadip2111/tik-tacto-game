@@ -1,21 +1,16 @@
 import { useState } from 'react';
-import { calculateWinner } from './winner';
+import  calculateWinner  from './winner';
 //import reactLogo from './assets/react.svg'
 import Board from './component/Board';
 import './styles.scss';
-
+import  Statusmessage  from './component/StatusMessage';
 function App() {
   const [squares, setsquares] = useState(Array(9).fill(null));
   //lets add a player function for playing
   //passing the initial value as false and next its flips
   const [isXnext, setisXnext] = useState(false);
   const winner = calculateWinner(squares);
-    const nextPlayer = isXnext ? 'X' : 'O';
-    const message = winner
-      ? `winner is ${winner}`
-      : `next player ${nextPlayer}`;
 
-    
    
   const handelSquareClick = clickedPosiion => {
     //its check if Already the value present then not run the next code or you can say
@@ -38,7 +33,8 @@ function App() {
   };
   return (
     <div className="app">
-      <h2> {message}</h2>
+      
+      <Statusmessage winner={winner} isXnext={isXnext} squares={squares}/>
       <Board squares={squares} handelSquareClick={handelSquareClick} />
     </div>
   );
