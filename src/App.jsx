@@ -43,7 +43,8 @@ const lastGamingState = isTraversing? currentHistory[currentMove]:history[histor
         return squaresValue;
       });
 const base=isTraversing?currentHistory.slice(0,currentHistory.indexOf(lastGamingState)+1):currentHistory
-      return base.concat({squares:nextSquareaState,isXnext:!lastGamingState.isXnext})  //!lastGamingState.isXnext we use it for flip the boolean value
+      return base.concat({squares:nextSquareaState,isXnext:!lastGamingState.isXnext}) 
+      //  !lastGamingState.isXnext we use it for flip the boolean value
     });
     setcurrentMove(move=>move+1)
   };
@@ -58,11 +59,13 @@ const base=isTraversing?currentHistory.slice(0,currentHistory.indexOf(lastGaming
    }
   return (
     <div className="app">
-      
+      <h1>TIC   <span className='text-green'>TAC</span> TO</h1>
       <Statusmessage winner={winner} gamingBoard={gamingBoard}/>
       <Board squares={gamingBoard.squares} handelSquareClick={handelSquareClick} />
       <button onClick={Reset_function} className={`btn-reset ${winner?'active':''}`}> RESTART GAME</button>
-      <h2> Current Game History</h2>
+      <h2 style={{
+        frontWeight:'normal'
+      }}> Current Game History</h2>
       <History  history={history} moveTo={moveTo} currentMove={currentMove}/>
     </div>
   );
